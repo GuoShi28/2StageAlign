@@ -137,9 +137,7 @@ def main():
     border_frame = N_in // 2  # border frames when evaluate
     # temporal padding mode
     padding = 'new_info'
-    # GT_dataset_folder = '../datasets/REDS4/GT'
-    # GT_dataset_folder = '../datasets/Vid4/GT'
-    GT_dataset_folder = '/home/guoshi/Data/4K_video_test/4K_frames_test'
+    GT_dataset_folder = '4K_frames_test' # put Videezy dataset folder here
     save_folder = '../results/{}'.format(data_mode)
     util.mkdirs(save_folder)
     print(save_folder)
