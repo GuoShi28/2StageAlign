@@ -93,7 +93,7 @@ def main():
     border_frame = N_in // 2  # border frames when evaluate
     # temporal padding mode
     padding = 'new_info'
-    test_dataset_folder = '/home/guoshi/Data/MultiCaptured_Self/SC_burst_select' # put dataset here
+    test_dataset_folder = '/SC_burst/' # put dataset here
     save_folder = '../results/{}'.format(data_mode)
     util.mkdirs(save_folder)
     print(save_folder)
