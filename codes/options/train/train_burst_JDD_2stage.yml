@@ -1,0 +1,76 @@
+#### general settings
+name: J0007_JDDB_PBMNet_wgr_ncc_gt_s2h_re
+use_tb_logger: true
+model: video_base_2stage
+distortion: sr
+# scale: 4 # GS: without scale for denoising
+# gpu_ids: [0,1,2,3,4,5,6,7]
+gpu_ids: [0]
+
+#### datasets
+datasets:
+  train:
+    name: REDS4
+    mode: REDS_Joint
+    interval_list: [1]
+    random_reverse: false
+    border_mode: false
+    dataroot_GT: /home/guoshi/Data/Video/REDS/train_sharp_wval.lmdb # put training dataset here
+    cache_keys: ~
+
+    N_frames: 5
+    use_shuffle: true
+    n_workers: 4 # per GPU
+    batch_size: 1
+    GT_size: 128 # GS: change training dataset to 128
+    LQ_size: 64
+    use_flip: true
+    use_rot: true
+    color: RGB
+  val:
+    name: REDS4
+    mode: video_rggb_joint_test
+    dataroot_GT: ../datasets/REDS4/GT_small
+    cache_data: True
+    N_frames: 5
+    padding: new_info
+
+#### network structures
+network_G:
+  which_model_G: JDDB_BiGRU_Dconv_wInter
+  nf: 64
+  nframes: 5
+  groups: 8
+  align_scale: 4 
+  search_window: 64 # search_win on LR image: search_window/align_scale
+  w_Inter: True
+
+#### path
+path:
+  pretrain_model_G:
+  strict_load: false
+  resume_state: ~
+  pretrain_model_DSNet:
+
+#### training settings: learning rate scheme, loss
+train:
+  lr_G: !!float 1e-4
+  lr_DSNet: !!float 1e-5
+  lr_scheme: CosineAnnealingLR_Restart
+  beta1: 0.9
+  beta2: 0.99
+  niter: 600000
+  ft_tsa_only: 0 # 50000
+  wo_FlowUpdate: 5000
+  warmup_iter: -1  # -1: no warm up
+  T_period: [50000, 100000, 150000, 150000, 150000]
+  restarts: [50000, 150000, 300000, 450000]
+  restart_weights: [1, 1, 1, 1]
+  eta_min: !!float 1e-7
+  val_freq: !!float 1e2
+  manual_seed: 0
+
+#### logger
+logger:
+  print_freq: 20
+  save_checkpoint_freq: !!float 1e2
