@@ -24,7 +24,7 @@ python /codes/test_Vid4_REDS4_joint_2stage_REDS4.py
 #### Videezy
 
 * To evaluate the performance on 4K burst images/video, we collect several clips from website. 
-* [Dataset](https://drive.google.com/file/d/1YDljUONvyKUO24smTx__CUH_4Zxhle09/view?usp=sharing)
+* Dataset: [Google Drive](https://drive.google.com/file/d/1YDljUONvyKUO24smTx__CUH_4Zxhle09/view?usp=sharing)
 
 ```
 python /codes/test_Vid4_REDS4_joint_2stage_Videezy4K.py
