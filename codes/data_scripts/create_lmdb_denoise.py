@@ -46,8 +46,8 @@ def REDS(mode):
     # Set False for use limited memory
     BATCH = 1000  # After BATCH images, lmdb commits, if read_all_imgs = False
     
-    img_folder = '/home/guoshi/data6T/Video/train_sharp'
-    lmdb_save_path = '/home/guoshi/data6T/Video/REDS/train_sharp_wval.lmdb'
+    img_folder = '..../train_sharp' # put REDS4 dataset folder here
+    lmdb_save_path = '..../REDS/train_sharp_wval.lmdb' # put output folder here
     H_dst, W_dst = 720, 1280
     
     n_thread = 40
