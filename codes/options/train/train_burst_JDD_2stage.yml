@@ -5,7 +5,7 @@ model: video_base_2stage
 distortion: sr
 # scale: 4 # GS: without scale for denoising
 # gpu_ids: [0,1,2,3,4,5,6,7]
-gpu_ids: [0]
+gpu_ids: [0, 1] # default: use two GPUs
 
 #### datasets
 datasets:
@@ -15,13 +15,13 @@ datasets:
     interval_list: [1]
     random_reverse: false
     border_mode: false
-    dataroot_GT: /home/guoshi/Data/Video/REDS/train_sharp_wval.lmdb # put training dataset here
+    dataroot_GT: ..../REDS/train_sharp_wval.lmdb # put training dataset here
     cache_keys: ~
 
     N_frames: 5
     use_shuffle: true
     n_workers: 4 # per GPU
-    batch_size: 1
+    batch_size: 2 # default: 1 x 2GPUs
     GT_size: 128 # GS: change training dataset to 128
     LQ_size: 64
     use_flip: true
@@ -67,10 +67,10 @@ train:
   restarts: [50000, 150000, 300000, 450000]
   restart_weights: [1, 1, 1, 1]
   eta_min: !!float 1e-7
-  val_freq: !!float 1e2
+  val_freq: !!float 5e4
   manual_seed: 0
 
 #### logger
 logger:
   print_freq: 20
-  save_checkpoint_freq: !!float 1e2
+  save_checkpoint_freq: !!float 5e4
