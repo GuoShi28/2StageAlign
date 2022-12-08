@@ -45,7 +45,7 @@ python /codes/test_Vid4_REDS4_joint_2stage_RealCaptured.py
 * change training options in [train_burst_JDD_2stage.yml](https://github.com/GuoShi28/2StageAlign/blob/main/codes/options/train/train_burst_JDD_2stage.yml)
 
 ```
-python -m torch.distributed.launch --nproc_per_node=2 --master_port=4540 train.py -opt options/train/train_GCP_Net.yml --launcher pytorch
+python -m torch.distributed.launch --nproc_per_node=2 --master_port=4540 train.py -opt options/train/train_burst_JDD_2stage.yml --launcher pytorch
 ```
 
 ## Environment
